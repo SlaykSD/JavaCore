@@ -7,6 +7,9 @@ package ru.ylab.task2;
          */
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Objects;
 
 public class Main {
     static final Integer [] RAW = {3,4,2,7};
@@ -14,17 +17,15 @@ public class Main {
     /**
      * The function searches for two elements of an unsorted
      * array whose sum is equal to a given number.
-     * The algorithm is executed for asymptotic complexity  O(nlogn) + O(n)
-     * O(nlogn) - its Heapsort
-     * O(n) - find sum
+     *
      *
      * @param mas - array of Integer
      * @param specialNumber - a given sum of two numbers of the array
      * @return an array of two numbers  OR null (if not found the pair)
      */
     public static Integer[] findSpecialPair(Integer[] mas, Integer specialNumber){
-        heapSort(mas);//nlogn sorting
 
+        Arrays.sort(mas);//if array not contains null elements
         int lt = 0;
         int rt = mas.length-1;
         while (lt != rt){
@@ -41,44 +42,6 @@ public class Main {
         return null;
     }
 
-    /**
-     * Main function for heapsort
-     * @param a - array to be sorted
-     */
-    public static  void heapSort(Integer[] a) {
-        heapify(a);
-        var end = a.length - 1;
-        while (end > 0) {
-            var temp = a[end];
-            a[end] = a[0];
-            a[0] = temp;
-            end--;
-            siftDown(a, 0, end);
-        }
-    }
-
-    private static void heapify(Integer[] a) {
-        var start = (a.length - 2) / 2;
-        while (start >= 0) {
-            siftDown(a, start, a.length - 1);
-            start--;
-        }
-    }
-
-    private static  void  siftDown(Integer[] a,Integer start,Integer end) {
-        var root = start;
-        while (root * 2 + 1 <= end) {
-            var child = root * 2 + 1;
-            if (child + 1 <= end && a[child] < a[child + 1]) child++;
-            if (a[root] < a[child]) {
-                var temp = a[root];
-                a[root] = a[child];
-                a[child] = temp;
-                root = child;
-            }
-            else return;
-        }
-    }
 
     /**
      * Show the result
