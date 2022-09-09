@@ -19,6 +19,8 @@ public class Main {
      * @return True - if contains / False - else
      */
     public static boolean fuzzySearch(String word, String line){
+        if(word == null || line == null)
+            return false;
         for (int i=0; i<word.length(); i++){
             char c = word.charAt(i);
             int j = line.indexOf(c);

@@ -16,5 +16,8 @@ class MainTest {
         assertTrue(fuzzySearch(dataSearchSet1, dataVerifiable));
         dataVerifiable = "   nsetJjjjasjdbod       ";
         assertFalse(fuzzySearch(dataSearchSet1, dataVerifiable));
+        dataVerifiable = null;
+        assertFalse(fuzzySearch(dataSearchSet1, dataVerifiable));
+        assertFalse(fuzzySearch(null, dataVerifiable));
     }
 }
