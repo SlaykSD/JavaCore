@@ -37,13 +37,7 @@ public class Main {
                 .distinct()//Duplicates filtered
                 .sorted(Comparator.comparing(Person::getId))//Sort by id
                 .sorted(Comparator.comparing(Person::getName))//Sort by name
-                .map(Person::getName)
-                .distinct()// Looking for unique names
-                .collect(Collectors.toMap(name-> name, //Group by name
-                        name -> Arrays.stream(array)
-                                .distinct()
-                                .filter(p->p.getName().equals(name))
-                                .count()));
+                .collect(Collectors.groupingBy(Person::getName,Collectors.counting()));//Group by Name
 
     }
     public static void show(Map<String,Long> res){
